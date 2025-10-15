@@ -32,7 +32,7 @@
             "ssr": {
               "entry": "src/server.ts"
             },
-            "scripts": ["src/app/app.js"]
+            "scripts": ["src/app/javascript/app.js"]
           },
           "configurations": {
             "production": {
