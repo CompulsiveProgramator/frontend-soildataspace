@@ -1,0 +1,41 @@
+<div *ngIf="isVisible" 
+     [ngClass]="{'animate-fadeOut': isFadingOut, 'animate-fadeIn': !isFadingOut}"
+     class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[9999] p-4 overflow-y-auto"
+     (click)="closeModal()">
+    
+    <div class="relative bg-white rounded-3xl shadow-2xl w-full max-w-3xl sm:max-w-4xl md:max-w-5xl overflow-hidden flex flex-col h-auto sm:h-[85vh]"
+         (click)="$event.stopPropagation()">
+        
+        <button class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-3xl font-bold leading-none z-10" (click)="closeModal()">&times;</button>
+
+        <div class="flex-shrink-0 h-64 overflow-hidden relative">
+            <img [src]="finalImage" [alt]="news.title" class="w-full h-full object-cover object-center transition-transform duration-300">
+            
+            <span [ngClass]="['text-' + color + '-700', 'bg-white/90']"
+                  class="absolute top-3 left-3 inline-flex items-center gap-1 px-3 py-1 rounded-full text-[12px] font-semibold shadow-sm">
+                <span [ngClass]="['bg-' + color + '-500']" class="w-2 h-2 rounded-full animate-ping"></span> 
+                {{ news.category }}
+            </span>
+        </div>
+
+        <div class="flex-grow overflow-y-auto p-6 sm:p-8 space-y-4 text-gray-700 leading-relaxed">
+            <h2 [ngClass]="['text-' + color + '-700']" class="text-2xl sm:text-3xl font-extrabold">{{ news.title }}</h2>
+            <p class="text-sm text-gray-500">{{ news.date }} | {{ news.author }}</p>
+            <p class="text-base sm:text-lg">{{ news.description }}</p>
+            
+            <p class="text-base sm:text-lg">{{ news.content }}</p>
+
+            <a *ngIf="news.link" [href]="news.link" target="_blank" rel="noopener noreferrer"
+               [ngClass]="['bg-' + color + '-600', 'hover:bg-' + color + '-700']"
+               class="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-lg text-white font-semibold transition">
+                {{ finalButtonText }} <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+            </a>
+        </div>
+
+        <button *ngIf="isLoggedIn" id="delete-news" (click)="onDeleteNews()" [disabled]="isDeleting"
+            class="absolute bottom-4 right-4 px-5 py-2 rounded-lg text-white font-semibold shadow-md 
+            bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 transition">
+            {{ isDeleting ? 'Borrando...' : 'Borrar' }}
+        </button>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<!--Si el formario es visible, aparece-->
+<div *ngIf="isVisible" 
+    class="relative bg-white rounded-2xl shadow-2xl w-full max-w-3xl sm:max-w-4xl md:max-w-5xl overflow-hidden animate-fadeIn flex flex-col h-auto sm:h-[85vh] overflow-y-auto">
+                
+    <button class="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-3xl font-bold leading-none z-10" id="close-modal">&times;</button>
+
+    <form id="news_form" class="flex flex-col gap-4 p-6" method="POST" action="endpoint_POST"> 
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-emerald-700 mb-8">Crear Nueva Noticia</h2>
+        <p>Título: </p><input type="text" name="title" placeholder="Título de la noticia." required class="input-noticia" />
+        <p>Fecha: </p><input type="date" name="date" placeholder="dd/mm/yyyy" class="input-noticia" />
+        <p>Autor: </p><input type="text" name="author" placeholder="Autor de la noticia." required class="input-noticia" />
+        <p>Categoría: </p><input type="text" name="category" placeholder="Categoría de la noticia." required class="input-noticia" />
+        <p>Descripción: </p><input type="text" name="description" placeholder="Descripción corta." required class="input-noticia" />
+        <p>Contenido: </p><textarea name="content" placeholder="Contenido de la noticia." required class="input-noticia-alto" rows="5"></textarea>
+        <p>Enlace: </p><input type="text" name="link" placeholder="Enlace a la noticia" class="input-noticia" />
+        <p>Texto del botón: </p><input type="text" name="button_text" placeholder="Texto del botón en la interfaz." class="input-noticia" />
+        <p>Imagen: </p><input type="file" name="image" placeholder="Imagen de portada" class="input-noticia" accept="image/png, image/jpeg, .png, .jpg"/>
+        
+        <button type="submit"
+            class="w-full inline-flex items-center justify-center px-4 py-2 sm:px-5 sm:py-10 text-xl font-semibold text-white bg-gradient-to-r from-emerald-600 to-cyan-600 hover:from-emerald-700 hover:to-cyan-700 rounded-lg transition-all duration-300 transform hover:scale-102 hover:shadow-lg">
+            Crear noticia
+        </button>
+
+        <p id="errorMessage" class="text-sm text-red-600 mt-2 hidden">ERROR: No se pudo crear la noticia. Revisa los caracteres introducidos y el archivo.</p>
+    </form>
+</div>
